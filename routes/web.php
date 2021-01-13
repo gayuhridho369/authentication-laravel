@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 
-Route::get('logout', 'LoginController@logout');
+// Route::get('logout', 'LoginController@logout');
+
+Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
+Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
