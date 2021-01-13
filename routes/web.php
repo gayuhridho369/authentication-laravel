@@ -24,5 +24,8 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 
 // Route::get('logout', 'LoginController@logout');
 
-Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
-Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
+
+Route::middleware('auth')->group(function () {
+    Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
+    Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
+});
